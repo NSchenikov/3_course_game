@@ -54,6 +54,15 @@ body {
     border: none;
     background-color: #FFFFFF;
 }
+.levelone:hover {
+    background-color: #a3a7aa;
+}
+.leveltwo:hover {
+    background-color: #a3a7aa;
+}
+.levelthree:hover {
+    background-color: #a3a7aa;
+}
 .btn {
     font-family: "StratosSkyengLight";
     margin-top: 25px;
@@ -66,4 +75,11 @@ body {
     font-size: 24px;
     line-height: 32px;
     color: #FFFFFF;
+}
+.btn:hover {
+    background-color: #b5d086;
+}
+
+.choosed {
+    background-color: #5e7485;
 }
