@@ -1,3 +1,8 @@
+
+.center {
+    padding-left: calc(50% - 700px);
+    padding-right: calc(50% - 700px);
+}
 @font-face {
     font-family: "StratosSkyeng";
     src: url("/fonts/Desktop\ fonts/stratosskyeng-regular.otf") format("opentype");
@@ -63,7 +68,7 @@ body {
 .levelthree:hover {
     background-color: #a3a7aa;
 }
-.btn {
+.btn, .start-again-btn {
     font-family: "StratosSkyengLight";
     margin-top: 25px;
     width: 246px;
@@ -83,3 +88,54 @@ body {
 .choosed {
     background-color: #5e7485;
 }
+
+.game-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 22px;
+}
+.timer-text-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 39px;
+}
+.min, .sek {
+    font-family: "StratosSkyengLight";
+    font-weight: 400;
+    font-size: 16px;
+    color: #FFFFFF;
+}
+.timer {
+    font-family: "StratosSkyeng";
+    width: 155px;
+    height: 72px;
+    font-weight: 400;
+    font-size: 64px;
+    color: #FFFFFF;
+    line-height: 60px;
+}
+
+.start-again-btn {
+    margin-bottom: 12px;
+    justify-self: end;
+}
+
+.cards {
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(9, 11%);
+    grid-column-gap: 9px;
+    grid-row-gap: 10px;
+}
+
+.closed-card {
+    content: url('/img/closed-card.svg');
+}
+
