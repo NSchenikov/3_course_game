@@ -79,7 +79,7 @@ function renderApp() {
         let levelone = document.querySelector(".levelone");
         let leveltwo = document.querySelector(".leveltwo");
         let levelthree = document.querySelector(".levelthree");
-        let start = document.querySelector(".btn");
+        // let start = document.querySelector(".btn");
 
         getLevel(levelone, 6);
         getLevel(leveltwo, 12);

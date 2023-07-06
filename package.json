@@ -6,19 +6,18 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "format": "prettier --write ./src/",
-        "lint:js": "eslint ./src/**/*.js",
-        "lint:css": "stylelint ./src/**/*.css"
+        "lint:js": "eslint ./src/*.js",
+        "lint:css": "stylelint ./src/css/*.css"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "@typescript-eslint/eslint-plugin": "^5.61.0",
         "eslint": "^8.44.0",
         "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-config-standard": "^17.1.0",
+        "eslint-plugin-prettier": "^5.0.0-alpha.1",
         "prettier": "^3.0.0",
-        "stylelint": "^14.16.1",
-        "stylelint-config-prettier": "^9.0.5",
+        "stylelint": "^15.10.1",
         "stylelint-config-standard": "^34.0.0",
         "stylelint-prettier": "^3.0.0"
     }
