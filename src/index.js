@@ -1,9 +1,12 @@
-let game = {
+import { renderCardsField } from "./render-cards-field-comonent.js";
+
+export let game = {
     time: 0,
     difficultyLevel: 0,
     status: "level",
     cards: [],
     userCards: [],
+    result: "",
 };
 
 const cardSuits = ["Diamonds", "Hearts", "Clubs", "Spades"];
@@ -55,7 +58,7 @@ function getLevel(el, cardsNum) {
 }
 
 function renderApp() {
-    const appEl = document.getElementById("app");
+    let appEl = document.getElementById("app");
 
     if (game.status === "level") {
         const gameHtml = `
@@ -87,8 +90,41 @@ function renderApp() {
     }
 
     if (game.status === "game") {
-        const gameHtml = `<div>Игра началась!</div>`;
-        appEl.innerHTML = gameHtml;
+        renderCardsField(appEl);
+        const cards = document.querySelectorAll(".card");
+        setTimeout(() => {
+            cards.forEach((card) => {
+                card.classList.add("closed-card");
+            });
+            for (let item of cards) {
+                item.addEventListener("click", () => {
+                    item.classList.remove("closed-card");
+                    let index = item.dataset.index;
+                    console.log(index);
+                    if (game.userCards.length <= 2) {
+                        game.userCards.push(game.cards[index]);
+                        console.log(game.userCards, "user cards");
+                    }
+                    if (game.userCards.length === 2) {
+                        if (
+                            game.userCards[0][0] === game.userCards[1][0] &&
+                            game.userCards[0][1] === game.userCards[1][1]
+                        ) {
+                            game.status = "finish";
+                            game.result = "win";
+                            console.log(game);
+                        } else {
+                            game.status = "finish";
+                            game.result = "lose";
+                            console.log(game);
+                        }
+                        game.result === "win"
+                            ? alert("Вы победили!")
+                            : alert("Вы проиграли!");
+                    }
+                });
+            }
+        }, 5000);
     }
 }
 
