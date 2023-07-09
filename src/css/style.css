@@ -1,6 +1,11 @@
+.center {
+    padding-left: calc(50% - 700px);
+    padding-right: calc(50% - 700px);
+}
 @font-face {
     font-family: "StratosSkyeng";
-    src: url("/fonts/Desktop\ fonts/stratosskyeng-regular.otf") format("opentype");
+    src: url("/fonts/Desktop\ fonts/stratosskyeng-regular.otf")
+        format("opentype");
 }
 @font-face {
     font-family: "StratosSkyengLight";
@@ -26,7 +31,7 @@ body {
     align-items: center;
     min-width: 480px;
     min-height: 459px;
-    background-color: #C2F5FF;
+    background-color: #c2f5ff;
     border-radius: 12px;
 }
 .header {
@@ -43,16 +48,18 @@ body {
     flex-direction: row;
     gap: 30px;
 }
-.levelone, .leveltwo, .levelthree {
+.levelone,
+.leveltwo,
+.levelthree {
     font-family: "StratosSkyeng";
     font-weight: 400;
     font-size: 64px;
-    color: #0080C1;
+    color: #0080c1;
     width: 98px;
     height: 98px;
     border-radius: 12px;
     border: none;
-    background-color: #FFFFFF;
+    background-color: #ffffff;
 }
 .levelone:hover {
     background-color: #a3a7aa;
@@ -63,18 +70,19 @@ body {
 .levelthree:hover {
     background-color: #a3a7aa;
 }
-.btn {
+.btn,
+.start-again-btn {
     font-family: "StratosSkyengLight";
     margin-top: 25px;
     width: 246px;
     height: 50px;
     border-radius: 12px;
     border: none;
-    background-color: #7AC100;
+    background-color: #7ac100;
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    color: #FFFFFF;
+    color: #ffffff;
 }
 .btn:hover {
     background-color: #b5d086;
@@ -82,4 +90,55 @@ body {
 
 .choosed {
     background-color: #5e7485;
+}
+
+.game-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 22px;
+}
+.timer-text-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 39px;
+}
+.min,
+.sek {
+    font-family: "StratosSkyengLight";
+    font-weight: 400;
+    font-size: 16px;
+    color: #ffffff;
+}
+.timer {
+    font-family: "StratosSkyeng";
+    width: 155px;
+    height: 72px;
+    font-weight: 400;
+    font-size: 64px;
+    color: #ffffff;
+    line-height: 60px;
+}
+
+.start-again-btn {
+    margin-bottom: 12px;
+    justify-self: end;
+}
+
+.cards {
+    padding-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(9, 11%);
+    grid-column-gap: 9px;
+    grid-row-gap: 10px;
+}
+
+.closed-card {
+    content: url("/img/closed-card.svg");
 }

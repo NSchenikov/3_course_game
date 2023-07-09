@@ -1,4 +1,3 @@
-
 let game = {
     time: 0,
     difficultyLevel: 0,
@@ -8,45 +7,46 @@ let game = {
 };
 
 const cardSuits = ["Diamonds", "Hearts", "Clubs", "Spades"];
-const cardRanks = ['6', '7', '8', '9', '10', 'Q', 'K', 'J', 'A'];
+const cardRanks = ["6", "7", "8", "9", "10", "Q", "K", "J", "A"];
 
 function getRandomCard(cardsNum) {
     return Math.floor(Math.random() * cardsNum);
 }
 
 function getLevel(el, cardsNum) {
-
-    el.addEventListener('click', () => {
-
+    el.addEventListener("click", () => {
         let levelone = document.querySelector(".levelone");
         let leveltwo = document.querySelector(".leveltwo");
         let levelthree = document.querySelector(".levelthree");
         let start = document.querySelector(".btn");
 
-        levelone.classList.remove('choosed');
-        leveltwo.classList.remove('choosed');
-        levelthree.classList.remove('choosed');
+        levelone.classList.remove("choosed");
+        leveltwo.classList.remove("choosed");
+        levelthree.classList.remove("choosed");
         game.cards = [];
 
-        el.classList.add('choosed');
+        el.classList.add("choosed");
 
-        for(let i = 1; i <= cardsNum; i++) {
-            game.cards.push([cardSuits[getRandomCard(cardSuits.length)], cardRanks[getRandomCard(cardRanks.length)]]);
+        for (let i = 1; i <= cardsNum; i++) {
+            game.cards.push([
+                cardSuits[getRandomCard(cardSuits.length)],
+                cardRanks[getRandomCard(cardRanks.length)],
+            ]);
         }
 
-        if(el === levelone) {
+        if (el === levelone) {
             game.difficultyLevel = 1;
         }
-        if(el === leveltwo) {
+        if (el === leveltwo) {
             game.difficultyLevel = 2;
         }
-        if(el === levelthree) {
+        if (el === levelthree) {
             game.difficultyLevel = 3;
         }
 
         console.log("game object", game);
 
-        start.addEventListener('click', () => {
+        start.addEventListener("click", () => {
             game.status = "game";
             renderApp();
             console.log("game object", game);
@@ -55,12 +55,10 @@ function getLevel(el, cardsNum) {
 }
 
 function renderApp() {
-
     const appEl = document.getElementById("app");
 
-    if(game.status === "level") {
-
-            const gameHtml = `
+    if (game.status === "level") {
+        const gameHtml = `
             <div class="container">
             <div class="box">
                 <div class="header">
@@ -81,24 +79,17 @@ function renderApp() {
         let levelone = document.querySelector(".levelone");
         let leveltwo = document.querySelector(".leveltwo");
         let levelthree = document.querySelector(".levelthree");
-        let start = document.querySelector(".btn");
+        // let start = document.querySelector(".btn");
 
         getLevel(levelone, 6);
         getLevel(leveltwo, 12);
         getLevel(levelthree, 18);
     }
 
-    if(game.status === "game") {
+    if (game.status === "game") {
         const gameHtml = `<div>Игра началась!</div>`;
         appEl.innerHTML = gameHtml;
     }
 }
 
 renderApp();
-
-
-
-
-
-
-
