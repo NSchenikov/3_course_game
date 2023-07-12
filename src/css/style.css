@@ -2,27 +2,30 @@
     padding-left: calc(50% - 700px);
     padding-right: calc(50% - 700px);
 }
+
 @font-face {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     src: url("/fonts/Desktop\ fonts/stratosskyeng-regular.otf")
         format("opentype");
 }
+
 @font-face {
-    font-family: "StratosSkyengLight";
+    font-family: StratosSkyengLight;
     src: url("/fonts/Desktop\ fonts/stratosskyeng-light.otf") format("opentype");
 }
 
 body {
     background-color: #004980;
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
 }
+
 .container {
     display: flex;
-    flex-direction: column;
+    flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
 }
+
 .box {
     margin-top: 158px;
     display: flex;
@@ -34,6 +37,7 @@ body {
     background-color: #c2f5ff;
     border-radius: 12px;
 }
+
 .header {
     margin-top: 60px;
     color: #004980;
@@ -43,15 +47,17 @@ body {
     flex-direction: column;
     align-items: center;
 }
+
 .levels {
     display: flex;
     flex-direction: row;
     gap: 30px;
 }
+
 .levelone,
 .leveltwo,
 .levelthree {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     font-weight: 400;
     font-size: 64px;
     color: #0080c1;
@@ -59,20 +65,24 @@ body {
     height: 98px;
     border-radius: 12px;
     border: none;
-    background-color: #ffffff;
+    background-color: #fff;
 }
+
 .levelone:hover {
     background-color: #a3a7aa;
 }
+
 .leveltwo:hover {
     background-color: #a3a7aa;
 }
+
 .levelthree:hover {
     background-color: #a3a7aa;
 }
+
 .btn,
 .start-again-btn {
-    font-family: "StratosSkyengLight";
+    font-family: StratosSkyengLight;
     margin-top: 25px;
     width: 246px;
     height: 50px;
@@ -82,8 +92,9 @@ body {
     font-weight: 400;
     font-size: 24px;
     line-height: 32px;
-    color: #ffffff;
+    color: #fff;
 }
+
 .btn:hover {
     background-color: #b5d086;
 }
@@ -98,31 +109,35 @@ body {
     justify-content: space-between;
     align-items: flex-end;
 }
+
 .timer-container {
     display: flex;
     flex-direction: column;
     margin-top: 22px;
 }
+
 .timer-text-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-left: 39px;
 }
+
 .min,
 .sek {
-    font-family: "StratosSkyengLight";
+    font-family: StratosSkyengLight;
     font-weight: 400;
     font-size: 16px;
-    color: #ffffff;
+    color: #fff;
 }
+
 .timer {
-    font-family: "StratosSkyeng";
+    font-family: StratosSkyeng;
     width: 155px;
     height: 72px;
     font-weight: 400;
     font-size: 64px;
-    color: #ffffff;
+    color: #fff;
     line-height: 60px;
 }
 
@@ -135,8 +150,7 @@ body {
     padding-top: 40px;
     display: grid;
     grid-template-columns: repeat(9, 11%);
-    grid-column-gap: 9px;
-    grid-row-gap: 10px;
+    grid-gap: 10px 9px;
 }
 
 .closed-card {
