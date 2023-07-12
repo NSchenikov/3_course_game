@@ -1,8 +1,10 @@
-import { renderCardsField } from "./render-cards-field-comonent.js";
+"use strict";
+
+import { renderCardsField } from "./render-cards-field-comonent.ts";
 
 let minutes = 0;
 let seconds = 0;
-let interval;
+let interval: any;
 
 export let game = {
     time: {
@@ -17,14 +19,14 @@ export let game = {
 };
 export let isFinished = false;
 
-const cardSuits = ["Diamonds", "Hearts", "Clubs", "Spades"];
-const cardRanks = ["6", "7", "8", "9", "10", "Q", "K", "J", "A"];
+const cardSuits: string[] = ["Diamonds", "Hearts", "Clubs", "Spades"];
+const cardRanks: string[] = ["6", "7", "8", "9", "10", "Q", "K", "J", "A"];
 
-function getRandomCard(cardsNum) {
+function getRandomCard(cardsNum: any) {
     return Math.floor(Math.random() * cardsNum);
 }
 
-function clickToPlayAgain(element) {
+function clickToPlayAgain(element?: any) {
     document.querySelector(element).addEventListener("click", () => {
         isFinished = false;
         minutes = 0;
@@ -41,8 +43,8 @@ function clickToPlayAgain(element) {
 }
 
 function startTimer() {
-    let appendMinutes = document.getElementById("minutes");
-    let appendSeconds = document.getElementById("seconds");
+    let appendMinutes: any = document.getElementById("minutes");
+    let appendSeconds: any = document.getElementById("seconds");
     function start() {
         clearInterval(interval);
         interval = setInterval(starta, 1000);
@@ -70,12 +72,12 @@ function startTimer() {
     start();
 }
 
-function getLevel(el, cardsNum) {
+function getLevel(el: any, cardsNum: number) {
     el.addEventListener("click", () => {
-        let levelone = document.querySelector(".levelone");
-        let leveltwo = document.querySelector(".leveltwo");
-        let levelthree = document.querySelector(".levelthree");
-        let start = document.querySelector(".btn");
+        let levelone: any = document.querySelector(".levelone");
+        let leveltwo: any = document.querySelector(".leveltwo");
+        let levelthree: any = document.querySelector(".levelthree");
+        let start: any = document.querySelector(".btn");
 
         levelone.classList.remove("choosed");
         leveltwo.classList.remove("choosed");
@@ -112,7 +114,7 @@ function getLevel(el, cardsNum) {
 }
 
 function renderApp() {
-    let appEl = document.getElementById("app");
+    let appEl: any = document.getElementById("app");
 
     if (game.status === "level") {
         const gameHtml = `
@@ -145,9 +147,9 @@ function renderApp() {
     if (game.status === "game") {
         renderCardsField(appEl);
         clickToPlayAgain(".start-again-btn");
-        const cards = document.querySelectorAll(".card");
+        const cards: any = document.querySelectorAll(".card");
         setTimeout(() => {
-            cards.forEach((card) => {
+            cards.forEach((card: any) => {
                 card.classList.add("closed-card");
             });
             startTimer();
@@ -179,9 +181,9 @@ function renderApp() {
 
                         isFinished = true;
                         renderCardsField(appEl);
-                        let appendMinutess =
+                        let appendMinutess: any =
                             document.getElementById("minutess");
-                        let appendSecondss =
+                        let appendSecondss: any =
                             document.getElementById("secondss");
                         if (seconds <= 9) {
                             appendSecondss.innerHTML = "0" + seconds;

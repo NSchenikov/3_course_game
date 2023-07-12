@@ -1,6 +1,6 @@
-import { game, isFinished } from "./index.js";
+import { game, isFinished } from "./index.ts";
 
-export function renderCardsField(appEl) {
+export function renderCardsField(appEl: any) {
     const cardsHtml = game.cards
         .map((card, index) => {
             return `<img src="./img/${card[0]} ${card[1]}.png" class="card" alt="" data-index=${index}></img>`;
