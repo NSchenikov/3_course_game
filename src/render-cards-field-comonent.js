@@ -1,4 +1,4 @@
-import { game } from "./index.js";
+import { game, isFinished } from "./index.js";
 
 export function renderCardsField(appEl) {
     const cardsHtml = game.cards
@@ -13,7 +13,7 @@ export function renderCardsField(appEl) {
                         <div class="min">min</div>
                         <div class="sek">sek</div>
                     </div>
-                    <div class="timer">00.00</div>
+                    <div class="timer"><span id="minutes">00</span>:<span id="seconds">00</span></div>
                 </div>
                 <button class="start-again-btn">
                     Начать заново
@@ -21,6 +21,25 @@ export function renderCardsField(appEl) {
             </div>
             <div class="cards center">
                 ${cardsHtml}
-            </div>`;
+            </div>
+            ${
+                isFinished
+                    ? `<div class="modal">
+            <div class="modal-content">
+                <div class="modal-content-container">
+                    <img class="modal-img" src="/img/${
+                        game.result === "win" ? "win" : "lose"
+                    }.png">
+                    <div class="result">Вы ${
+                        game.result === "win" ? "выйграли" : "проиграли"
+                    }!</div>
+                    <div class="result-time-descr">Затраченное время:</div>
+                    <div class="result-time"><span id="minutess">00</span>:<span id="secondss">00</span></div>
+                    <button class="play-again">Играть снова</button>
+                </div>
+            </div>
+            </div>`
+                    : ""
+            }`;
     appEl.innerHTML = gameHtml;
 }

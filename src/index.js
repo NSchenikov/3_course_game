@@ -1,19 +1,73 @@
 import { renderCardsField } from "./render-cards-field-comonent.js";
 
+let minutes = 0;
+let seconds = 0;
+let interval;
+
 export let game = {
-    time: 0,
+    time: {
+        minutes: 0,
+        seconds: 0,
+    },
     difficultyLevel: 0,
     status: "level",
     cards: [],
     userCards: [],
     result: "",
 };
+export let isFinished = false;
 
 const cardSuits = ["Diamonds", "Hearts", "Clubs", "Spades"];
 const cardRanks = ["6", "7", "8", "9", "10", "Q", "K", "J", "A"];
 
 function getRandomCard(cardsNum) {
     return Math.floor(Math.random() * cardsNum);
+}
+
+function clickToPlayAgain(element) {
+    document.querySelector(element).addEventListener("click", () => {
+        isFinished = false;
+        minutes = 0;
+        seconds = 0;
+        game.time.minutes = 0;
+        game.time.seconds = 0;
+        game.difficultyLevel = 0;
+        game.status = "level";
+        game.cards = [];
+        game.userCards = [];
+        game.result = "";
+        renderApp();
+    });
+}
+
+function startTimer() {
+    let appendMinutes = document.getElementById("minutes");
+    let appendSeconds = document.getElementById("seconds");
+    function start() {
+        clearInterval(interval);
+        interval = setInterval(starta, 1000);
+    }
+
+    function starta() {
+        seconds++;
+        if (seconds <= 9) {
+            appendSeconds.innerHTML = "0" + seconds;
+        }
+        if (seconds > 9) {
+            appendSeconds.innerHTML = seconds;
+        }
+        if (seconds > 59) {
+            console.log("minutes");
+            minutes++;
+            appendMinutes.innerHTML = "0" + minutes;
+            seconds = 0;
+            appendSeconds.innerHTML = "0" + 0;
+        }
+        if (minutes > 9) {
+            appendMinutes.innerHTML = minutes;
+        }
+    }
+    start();
 }
 
 function getLevel(el, cardsNum) {
@@ -82,7 +136,6 @@ function renderApp() {
         let levelone = document.querySelector(".levelone");
         let leveltwo = document.querySelector(".leveltwo");
         let levelthree = document.querySelector(".levelthree");
-        // let start = document.querySelector(".btn");
 
         getLevel(levelone, 6);
         getLevel(leveltwo, 12);
@@ -91,11 +144,13 @@ function renderApp() {
 
     if (game.status === "game") {
         renderCardsField(appEl);
+        clickToPlayAgain(".start-again-btn");
         const cards = document.querySelectorAll(".card");
         setTimeout(() => {
             cards.forEach((card) => {
                 card.classList.add("closed-card");
             });
+            startTimer();
             for (let item of cards) {
                 item.addEventListener("click", () => {
                     item.classList.remove("closed-card");
@@ -106,21 +161,41 @@ function renderApp() {
                         console.log(game.userCards, "user cards");
                     }
                     if (game.userCards.length === 2) {
+                        clearInterval(interval);
                         if (
                             game.userCards[0][0] === game.userCards[1][0] &&
                             game.userCards[0][1] === game.userCards[1][1]
                         ) {
                             game.status = "finish";
                             game.result = "win";
-                            console.log(game);
                         } else {
                             game.status = "finish";
                             game.result = "lose";
-                            console.log(game);
                         }
-                        game.result === "win"
-                            ? alert("Вы победили!")
-                            : alert("Вы проиграли!");
+
+                        game.time.minutes = minutes;
+                        game.time.seconds = seconds;
+                        console.log(game);
+
+                        isFinished = true;
+                        renderCardsField(appEl);
+                        let appendMinutess =
+                            document.getElementById("minutess");
+                        let appendSecondss =
+                            document.getElementById("secondss");
+                        if (seconds <= 9) {
+                            appendSecondss.innerHTML = "0" + seconds;
+                        }
+                        if (seconds > 9) {
+                            appendSecondss.innerHTML = seconds;
+                        }
+                        if (minutes <= 9) {
+                            appendMinutess.innerHTML = "0" + minutes;
+                        }
+                        if (minutes > 9) {
+                            appendMinutess.innerHTML = minutes;
+                        }
+                        clickToPlayAgain(".play-again");
                     }
                 });
             }
