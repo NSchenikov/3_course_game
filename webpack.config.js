@@ -2,6 +2,7 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
     entry: "./src/index.ts",
@@ -38,5 +39,13 @@ module.exports = {
         path: path.resolve(__dirname, "dist"),
         filename: "bundle.js",
     },
-    plugins: [new MiniCssExtractPlugin(), new HtmlWebpackPlugin()],
+    plugins: [
+        new MiniCssExtractPlugin(),
+        new HtmlWebpackPlugin({
+            template: "./index.html",
+        }),
+        new CopyPlugin({
+            patterns: [{ from: "img", to: "img" }],
+        }),
+    ],
 };

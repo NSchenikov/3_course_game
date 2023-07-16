@@ -1,4 +1,4 @@
-import { game, isFinished } from "./index.ts";
+import { game, isFinished } from "./index";
 
 export function renderCardsField(appEl: any) {
     const cardsHtml = game.cards

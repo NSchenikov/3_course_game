@@ -1,12 +1,27 @@
 "use strict";
 
-import { renderCardsField } from "./render-cards-field-comonent.ts";
+import "./css/style.css";
+import { renderCardsField } from "./render-cards-field-comonent";
 
-let minutes = 0;
-let seconds = 0;
+let minutes: number = 0;
+let seconds: number = 0;
 let interval: any;
 
-export let game = {
+type Card = [string, string];
+
+type Game = {
+    time: {
+        minutes: number;
+        seconds: number;
+    };
+    difficultyLevel: number;
+    status: string;
+    cards: Card[];
+    userCards: Card[];
+    result: string;
+};
+
+export const game: Game = {
     time: {
         minutes: 0,
         seconds: 0,
@@ -22,12 +37,13 @@ export let isFinished = false;
 const cardSuits: string[] = ["Diamonds", "Hearts", "Clubs", "Spades"];
 const cardRanks: string[] = ["6", "7", "8", "9", "10", "Q", "K", "J", "A"];
 
-function getRandomCard(cardsNum: any) {
+function getRandomCard(cardsNum: number) {
     return Math.floor(Math.random() * cardsNum);
 }
 
-function clickToPlayAgain(element?: any) {
-    document.querySelector(element).addEventListener("click", () => {
+function clickToPlayAgain(element: string) {
+    const el = document.querySelector(element) as HTMLInputElement;
+    el.addEventListener("click", () => {
         isFinished = false;
         minutes = 0;
         seconds = 0;
@@ -43,8 +59,8 @@ function clickToPlayAgain(element?: any) {
 }
 
 function startTimer() {
-    let appendMinutes: any = document.getElementById("minutes");
-    let appendSeconds: any = document.getElementById("seconds");
+    const appendMinutes = document.getElementById("minutes") as HTMLElement;
+    const appendSeconds = document.getElementById("seconds") as HTMLElement;
     function start() {
         clearInterval(interval);
         interval = setInterval(starta, 1000);
@@ -56,7 +72,7 @@ function startTimer() {
             appendSeconds.innerHTML = "0" + seconds;
         }
         if (seconds > 9) {
-            appendSeconds.innerHTML = seconds;
+            appendSeconds.innerHTML = String(seconds);
         }
         if (seconds > 59) {
             console.log("minutes");
@@ -66,7 +82,7 @@ function startTimer() {
             appendSeconds.innerHTML = "0" + 0;
         }
         if (minutes > 9) {
-            appendMinutes.innerHTML = minutes;
+            appendMinutes.innerHTML = String(minutes);
         }
     }
     start();

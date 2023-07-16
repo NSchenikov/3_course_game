@@ -5,13 +5,19 @@
         "es6": true,
         "node": true
     },
-    "extends": ["eslint:recommended", "prettier"],
-    "plugins": ["prettier"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "prettier"
+    ],
+    "plugins": ["@typescript-eslint", "prettier"],
+    "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": 2020,
         "sourceType": "module"
     },
     "rules": {
+        "@typescript-eslint/no-var-requires": 0,
         "prettier/prettier": "error",
         "camelcase": ["error"],
         "eqeqeq": ["error", "always"]
