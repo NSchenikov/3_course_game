@@ -5,7 +5,7 @@ import { renderCardsField } from "./render-cards-field-comonent";
 
 let minutes: number = 0;
 let seconds: number = 0;
-let interval: any;
+let interval: number;
 
 type Card = [string, string];
 
@@ -63,7 +63,7 @@ function startTimer() {
     const appendSeconds = document.getElementById("seconds") as HTMLElement;
     function start() {
         clearInterval(interval);
-        interval = setInterval(starta, 1000);
+        interval = window.setInterval(starta, 1000);
     }
 
     function starta() {
@@ -88,12 +88,18 @@ function startTimer() {
     start();
 }
 
-function getLevel(el: any, cardsNum: number) {
+function getLevel(el: HTMLElement, cardsNum: number) {
     el.addEventListener("click", () => {
-        let levelone: any = document.querySelector(".levelone");
-        let leveltwo: any = document.querySelector(".leveltwo");
-        let levelthree: any = document.querySelector(".levelthree");
-        let start: any = document.querySelector(".btn");
+        const levelone = document.querySelector(
+            ".levelone"
+        ) as HTMLInputElement;
+        const leveltwo = document.querySelector(
+            ".leveltwo"
+        ) as HTMLInputElement;
+        const levelthree = document.querySelector(
+            ".levelthree"
+        ) as HTMLInputElement;
+        const start = document.querySelector(".btn") as HTMLInputElement;
 
         levelone.classList.remove("choosed");
         leveltwo.classList.remove("choosed");
@@ -130,7 +136,7 @@ function getLevel(el: any, cardsNum: number) {
 }
 
 function renderApp() {
-    let appEl: any = document.getElementById("app");
+    const appEl = document.getElementById("app") as HTMLElement;
 
     if (game.status === "level") {
         const gameHtml = `
@@ -151,9 +157,9 @@ function renderApp() {
 
         appEl.innerHTML = gameHtml;
 
-        let levelone = document.querySelector(".levelone");
-        let leveltwo = document.querySelector(".leveltwo");
-        let levelthree = document.querySelector(".levelthree");
+        const levelone = document.querySelector(".levelone") as HTMLElement;
+        const leveltwo = document.querySelector(".leveltwo") as HTMLElement;
+        const levelthree = document.querySelector(".levelthree") as HTMLElement;
 
         getLevel(levelone, 6);
         getLevel(leveltwo, 12);
@@ -163,16 +169,16 @@ function renderApp() {
     if (game.status === "game") {
         renderCardsField(appEl);
         clickToPlayAgain(".start-again-btn");
-        const cards: any = document.querySelectorAll(".card");
+        const cards = document.querySelectorAll(".card");
         setTimeout(() => {
-            cards.forEach((card: any) => {
+            cards.forEach((card) => {
                 card.classList.add("closed-card");
             });
             startTimer();
-            for (let item of cards) {
+            for (const item of cards) {
                 item.addEventListener("click", () => {
                     item.classList.remove("closed-card");
-                    let index = item.dataset.index;
+                    const index = Number((item as HTMLElement).dataset.index);
                     console.log(index);
                     if (game.userCards.length <= 2) {
                         game.userCards.push(game.cards[index]);
@@ -197,21 +203,23 @@ function renderApp() {
 
                         isFinished = true;
                         renderCardsField(appEl);
-                        let appendMinutess: any =
-                            document.getElementById("minutess");
-                        let appendSecondss: any =
-                            document.getElementById("secondss");
+                        const appendMinutess = document.getElementById(
+                            "minutess"
+                        ) as HTMLElement;
+                        const appendSecondss = document.getElementById(
+                            "secondss"
+                        ) as HTMLElement;
                         if (seconds <= 9) {
                             appendSecondss.innerHTML = "0" + seconds;
                         }
                         if (seconds > 9) {
-                            appendSecondss.innerHTML = seconds;
+                            appendSecondss.innerHTML = String(seconds);
                         }
                         if (minutes <= 9) {
                             appendMinutess.innerHTML = "0" + minutes;
                         }
                         if (minutes > 9) {
-                            appendMinutess.innerHTML = minutes;
+                            appendMinutess.innerHTML = String(minutes);
                         }
                         clickToPlayAgain(".play-again");
                     }

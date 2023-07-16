@@ -1,6 +1,6 @@
 import { game, isFinished } from "./index";
 
-export function renderCardsField(appEl: any) {
+export function renderCardsField(appEl: HTMLElement) {
     const cardsHtml = game.cards
         .map((card, index) => {
             return `<img src="./img/${card[0]} ${card[1]}.png" class="card" alt="" data-index=${index}></img>`;
