@@ -12,7 +12,7 @@ function getRandomCard(cardsNum) {
 }
 
 function getLevel(cardsNum, array) {
-    for (let i = 1; i <= cardsNum; i++) {
+    for (let i = 2; i <= cardsNum; i++) {
         array.push([
             cardSuits[getRandomCard(cardSuits.length)],
             cardRanks[getRandomCard(cardRanks.length)],
