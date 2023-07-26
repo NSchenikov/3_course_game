@@ -3,9 +3,9 @@
 import "./css/style.css";
 import { renderCardsField } from "./render-cards-field-comonent";
 
-let minutes: number = 0;
-let seconds: number = 0;
-let interval: number;
+// let minutes: number = 0;
+// let seconds: number = 0;
+// let interval: number;
 
 type Card = [string, string];
 
