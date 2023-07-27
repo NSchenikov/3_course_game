@@ -12,7 +12,7 @@
         "lint:css": "stylelint ./src/css/*.css",
         "lint:ts": "tsc ––noEmit",
         "build": "NODE_ENV=production webpack",
-        "start": "webpack-dev-server ––open",
+        "start": "webpack-dev-server --open",
         "prepare": "husky install"
     },
     "author": "",
