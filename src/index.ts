@@ -58,6 +58,16 @@ function clickToPlayAgain(element: string) {
     });
 }
 
+function getPair(array: Card[]) {
+    const firstOfRndIndex = getRandomCard(array.length);
+    const secondOfRndIndex = getRandomCard(array.length);
+    if (firstOfRndIndex !== secondOfRndIndex) {
+        array[secondOfRndIndex] = array[firstOfRndIndex];
+    } else {
+        getPair(array);
+    }
+}
+
 function startTimer() {
     const appendMinutes = document.getElementById("minutes") as HTMLElement;
     const appendSeconds = document.getElementById("seconds") as HTMLElement;
@@ -114,6 +124,8 @@ function getLevel(el: HTMLElement, cardsNum: number) {
                 cardRanks[getRandomCard(cardRanks.length)],
             ]);
         }
+
+        getPair(game.cards);
 
         if (el === levelone) {
             game.difficultyLevel = 1;
