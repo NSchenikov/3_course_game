@@ -58,7 +58,19 @@ function clickToPlayAgain(element: string) {
     });
 }
 
+function shuffleCards(array: Card[]) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        const temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+    console.log(array);
+}
+
 function startTimer() {
+    minutes = 0;
+    seconds = 0;
     const appendMinutes = document.getElementById("minutes") as HTMLElement;
     const appendSeconds = document.getElementById("seconds") as HTMLElement;
     function start() {
@@ -108,12 +120,17 @@ function getLevel(el: HTMLElement, cardsNum: number) {
 
         el.classList.add("choosed");
 
-        for (let i = 1; i <= cardsNum; i++) {
-            game.cards.push([
+        for (let i = 0; i <= cardsNum - 1; i += 2) {
+            game.cards[i] = [
                 cardSuits[getRandomCard(cardSuits.length)],
                 cardRanks[getRandomCard(cardRanks.length)],
-            ]);
+            ];
+            if (i + 1 < cardsNum) {
+                game.cards[i + 1] = game.cards[i];
+            }
         }
+
+        shuffleCards(game.cards);
 
         if (el === levelone) {
             game.difficultyLevel = 1;
@@ -180,19 +197,25 @@ function renderApp() {
                     item.classList.remove("closed-card");
                     const index = Number((item as HTMLElement).dataset.index);
                     console.log(index);
-                    if (game.userCards.length <= 2) {
-                        game.userCards.push(game.cards[index]);
-                        console.log(game.userCards, "user cards");
-                    }
-                    if (game.userCards.length === 2) {
-                        clearInterval(interval);
+                    game.userCards.push(game.cards[index]);
+                    console.log(game.userCards, "user cards");
+
+                    if (game.userCards.length % 2 === 0) {
                         if (
-                            game.userCards[0][0] === game.userCards[1][0] &&
-                            game.userCards[0][1] === game.userCards[1][1]
+                            game.userCards[game.userCards.length - 2][0] ===
+                                game.userCards[game.userCards.length - 1][0] &&
+                            game.userCards[game.userCards.length - 2][1] ===
+                                game.userCards[game.userCards.length - 1][1]
                         ) {
-                            game.status = "finish";
-                            game.result = "win";
+                            if (game.userCards.length === game.cards.length) {
+                                clearInterval(interval);
+                                game.status = "finish";
+                                game.result = "win";
+                            } else {
+                                return;
+                            }
                         } else {
+                            clearInterval(interval);
                             game.status = "finish";
                             game.result = "lose";
                         }
